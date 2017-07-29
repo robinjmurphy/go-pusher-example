@@ -1,6 +1,6 @@
-# pusher-example
+# go-pusher-example
 
-> A simple example of using Pusher
+> A simple example of using Pusher in a Go server
 
 * [server](server) - a Go HTTP server that triggers events using Pusher
 * [client](client) - a React application that renders events in a web UI
