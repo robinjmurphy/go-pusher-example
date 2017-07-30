@@ -2,15 +2,42 @@
 <head>
   <title>Pusher Example</title>
   <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script>
-    const pusher = new Pusher('4b89d71319ba5313fed1', {
-      cluster: 'eu',
-      encrypted: true
-    });
-
-    const channel = pusher.subscribe('events');
-    channel.bind('event', function(data) {
-      console.info(data);
-    });
-  </script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="main.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
+<body>
+  <div id="app">
+    <header class="header">
+      <div class="container">
+        <p class="status">{{ status }}</p>
+      </div>
+    </header>
+    <main>
+      <div class="empty" v-if="empty">
+        <div class="container">
+          <p>Listening for events.</p>
+          <p>Send an event from the command line:</p>
+          <pre><code>curl -X POST http://127.0.0.1:8000/events \
+  -H 'Content-Type: application/json' \
+  -d '{"foo": "bar"}'</code></pre>
+      </div>
+      </div>
+      <div class="event" v-for="event in events">
+        <div class="container">
+          <h4>Payload</h4>
+          <pre><code>{{ event.event }}</code></pre>
+          <h4>Received</h4>
+          <p>{{ event.timestamp }}</p>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p><a href="https://github.com/robinjmurphy/go-pusher-example">Source</a></p>
+      </div>
+    </footer>
+  </div>
+</body>

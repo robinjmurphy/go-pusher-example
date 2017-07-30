@@ -1,0 +1,53 @@
+body {
+  font-family: Inconsolata, monospace;
+  background-color: #211f25;
+  color: #f8fff4;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+h4 {
+  color: #9a989f;
+  margin-top: 0;
+}
+
+code,
+pre {
+  font-family: inherit;
+  color: #fafac6;
+}
+
+a:link,
+a:visited {
+  color: #9a989f;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #f8fff4;
+}
+
+.container {
+  max-width: 60em;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.header {
+  border-bottom: 1px solid #474350;
+}
+
+.status {
+  color: #fecdaa;
+}
+
+.event,
+.empty {
+  border-bottom: 1px solid #474350;
+  padding: 1em 0;
+  max-width: 100%;
+  overflow-x: scroll;
+}
