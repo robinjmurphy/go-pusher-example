@@ -10,8 +10,10 @@ import (
 	pusher "github.com/pusher/pusher-http-go"
 )
 
-const channel = "events"
-const eventName = "event"
+const (
+	channel   = "events"
+	eventName = "event"
+)
 
 var (
 	port   string
