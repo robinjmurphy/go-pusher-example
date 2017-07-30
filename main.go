@@ -79,7 +79,9 @@ func handleEvents(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("static"))
 	mux := http.NewServeMux()
+	mux.Handle("/", fs)
 	mux.HandleFunc("/status", handleStatus)
 	mux.HandleFunc("/events", handleEvents)
 	fmt.Println("Server started at http://127.0.0.1:" + port)
