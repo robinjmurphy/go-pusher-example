@@ -6,9 +6,31 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	pusher "github.com/pusher/pusher-http-go"
 )
 
 const channel = "events"
+const eventName = "message"
+
+var (
+	port   string
+	client pusher.Client
+)
+
+func init() {
+	port = "8000"
+	if p := os.Getenv("PORT"); p != "" {
+		port = p
+	}
+	client = pusher.Client{
+		AppId:   os.Getenv("PUSHER_APP_ID"),
+		Key:     os.Getenv("PUSHER_KEY"),
+		Secret:  os.Getenv("PUSHER_SECRET"),
+		Cluster: os.Getenv("PUSHER_CLUSTER"),
+		Secure:  true,
+	}
+}
 
 func handleStatus(w http.ResponseWriter, r *http.Request) {
 	status := map[string]string{
@@ -47,19 +69,19 @@ func handleEvents(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if _, err = client.Trigger(channel, eventName, event); err != nil {
+		http.Error(w, fmt.Sprintf("failed to send event: %s", err), 500)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(event)
 }
 
 func main() {
-	port := "8000"
-	if p := os.Getenv("PORT"); p != "" {
-		port = p
-	}
-
-	http.HandleFunc("/status", handleStatus)
-	http.HandleFunc("/events", handleEvents)
-
+	mux := http.NewServeMux()
+	mux.HandleFunc("/status", handleStatus)
+	mux.HandleFunc("/events", handleEvents)
 	fmt.Println("Server started at http://127.0.0.1:" + port)
-	http.ListenAndServe(":"+port, nil)
+	http.ListenAndServe(":"+port, mux)
 }
