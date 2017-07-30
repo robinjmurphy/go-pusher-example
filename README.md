@@ -3,7 +3,7 @@
 > A simple example of using Pusher in a Go server
 
 * [server](server) - a Go HTTP server that triggers events using Pusher
-* [client](client) - a React application that renders events in a web UI
+* [client](client) - a simple web page renders events in a web UI
 
 ## Starting the server
 
@@ -28,8 +28,7 @@ gin run main.go
 
 ```
 cd client
-npm install
-npm start
+open index.html
 ```
 
 ## Sending an event
