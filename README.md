@@ -4,6 +4,10 @@
 
 ## Starting the server
 
+First, replace the Pusher key and cluster in [`static/main.js`](static/main.js) with your own values.
+
+Then, start the Go server:
+
 ```
 export PUSHER_APP_ID=...
 export PUSHER_KEY=...
