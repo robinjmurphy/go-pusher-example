@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // replace this with your Pusher key
   const key = '4b89d71319ba5313fed1';
-
-  // replace this with your Pusher cluster
   const cluster = 'eu';
 
   const app = new Vue({
