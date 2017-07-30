@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+  <title>Pusher Example</title>
+  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+  <script>
+    const pusher = new Pusher('4b89d71319ba5313fed1', {
+      cluster: 'eu',
+      encrypted: true
+    });
+
+    const channel = pusher.subscribe('events');
+    channel.bind('event', function(data) {
+      console.info(data);
+    });
+  </script>
+</head>

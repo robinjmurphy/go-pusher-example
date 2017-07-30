@@ -11,7 +11,7 @@ import (
 )
 
 const channel = "events"
-const eventName = "message"
+const eventName = "event"
 
 var (
 	port   string
